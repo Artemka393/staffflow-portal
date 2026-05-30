@@ -86,17 +86,19 @@ function useScrollReveal() {
         entries.forEach((e) => {
           if (e.isIntersecting) {
             e.target.classList.add("visible");
+            observer.unobserve(e.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.05, rootMargin: "0px 0px -40px 0px" }
     );
 
-    const elements = document.querySelectorAll(".reveal");
-    elements.forEach((el) => observer.observe(el));
+    const timer = setTimeout(() => {
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    }, 80);
 
-    return () => observer.disconnect();
-  });
+    return () => { clearTimeout(timer); observer.disconnect(); };
+  }, []); // запускаем только один раз при монтировании
 }
 
 function useTyping(phrases: string[]) {
