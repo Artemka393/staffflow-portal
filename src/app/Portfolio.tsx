@@ -234,6 +234,7 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
   return (
     <P.Wrapper>
       <P.PortfolioGlobal />
+      <P.PortfolioResponsive />
 
       {/* ── Фоновые декорации ── */}
       <P.BgLayer>

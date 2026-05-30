@@ -991,6 +991,10 @@ export const ProjectCard = styled.a<{ $featured?: boolean }>`
     grid-column: span 2;
     border-color: rgba(255,102,0,0.25);
     background: linear-gradient(135deg, #1f1a14, #1a1a1a);
+
+    @media (max-width: 768px) {
+      grid-column: span 1;
+    }
   `}
 
   &::before {
@@ -1228,6 +1232,198 @@ export const CTAButton = styled.button`
 `;
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
+
+/* ── Адаптивность портфолио ─────────────────────────────────────────────── */
+
+export const PortfolioResponsive = createGlobalStyle`
+
+  /* ── Планшет ── */
+  @media (max-width: 1024px) {
+    ${ProjectsGrid} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    ${ProjectCard}[style*="grid-column"] {
+      grid-column: auto !important;
+    }
+    ${InterestsGrid} {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    ${HeroName} {
+      font-size: 56px;
+    }
+    ${PhotoFrame} {
+      width: 280px;
+      height: 340px;
+    }
+  }
+
+  /* ── Мобильный ── */
+  @media (max-width: 768px) {
+
+    /* Навбар */
+    ${Nav} {
+      padding: 0 20px;
+      height: 60px;
+    }
+    ${NavLinks} {
+      gap: 2px;
+    }
+    ${NavLink} {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+    ${NavPortalBtn} {
+      display: none;
+    }
+
+    /* Hero */
+    ${HeroSection} {
+      padding: 0 20px;
+      align-items: flex-start;
+      padding-top: 80px;
+    }
+    ${HeroGrid} {
+      grid-template-columns: 1fr;
+      gap: 32px;
+      padding-top: 0;
+    }
+    ${HeroRight} {
+      display: flex;
+      justify-content: center;
+      order: -1;
+    }
+    ${PhotoFrame} {
+      width: 200px;
+      height: 240px;
+    }
+    ${HeroName} {
+      font-size: clamp(36px, 10vw, 52px);
+      letter-spacing: -2px;
+    }
+    ${HeroTyping} {
+      font-size: 18px;
+    }
+    ${HeroDesc} {
+      font-size: 14px;
+    }
+    ${HeroButtons} {
+      flex-direction: column;
+      gap: 10px;
+    }
+    ${HeroPrimaryBtn}, ${HeroSecondaryBtn} {
+      width: 100%;
+      justify-content: center;
+    }
+    ${PhotoOrb} {
+      width: 56px;
+      height: 56px;
+      font-size: 16px;
+      right: -10px;
+    }
+
+    /* Секции */
+    ${Section} {
+      padding: 60px 20px;
+    }
+    ${SectionTitle} {
+      font-size: 28px;
+      margin-bottom: 36px;
+    }
+
+    /* Статистика */
+    ${StatsGrid} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    ${StatItem} strong {
+      font-size: 32px;
+    }
+
+    /* О себе */
+    ${AboutGrid} {
+      grid-template-columns: 1fr;
+    }
+    ${AboutInfo} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Навыки */
+    ${SkillsGrid} {
+      grid-template-columns: 1fr;
+    }
+
+    /* Интересы */
+    ${InterestsGrid} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Проекты */
+    ${ProjectsGrid} {
+      grid-template-columns: 1fr;
+    }
+
+    /* Контакты */
+    ${ContactSection} {
+      padding: 60px 20px;
+    }
+    ${ContactInner} {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    ${CTABox} {
+      padding: 28px 20px;
+    }
+
+    /* Скролл-хинт */
+    ${HeroScrollHint} {
+      display: none;
+    }
+  }
+
+  /* ── Маленький телефон ── */
+  @media (max-width: 420px) {
+    ${Nav} {
+      padding: 0 16px;
+    }
+    ${NavLink} {
+      display: none;
+    }
+    ${NavLink}:first-child {
+      display: block;
+    }
+    ${NavLogo} {
+      font-size: 16px;
+    }
+    ${HeroSection} {
+      padding: 0 16px;
+      padding-top: 72px;
+    }
+    ${Section} {
+      padding: 48px 16px;
+    }
+    ${AboutInfo} {
+      grid-template-columns: 1fr;
+    }
+    ${StatsGrid} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    ${StatItem} {
+      padding: 20px 16px;
+    }
+    ${InterestsGrid} {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    ${PhotoFrame} {
+      width: 160px;
+      height: 200px;
+    }
+    ${CTABox} {
+      padding: 24px 16px;
+    }
+    ${ContactSection} {
+      padding: 48px 16px;
+    }
+  }
+`;
 
 export const Footer = styled.footer`
   padding: 28px 48px;
