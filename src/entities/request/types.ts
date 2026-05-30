@@ -1,6 +1,6 @@
 export type RequestStatus = "pending" | "in_review" | "approved" | "rejected";
 
-export type RequestType = "vacation" | "business_trip" | "access" | "equipment";
+export type RequestType = "invitation" | "response" | "interview" | "offer";
 
 export type RequestPriority = "normal" | "high";
 
@@ -27,12 +27,12 @@ export type EmployeeRequest = {
   type: RequestType;
   status: RequestStatus;
   priority: RequestPriority;
-  employee: string;
-  department: string;
-  approver: string;
+  employee: string;   // название компании
+  department: string; // должность / вакансия
+  approver: string;   // рекрутер / контакт
   createdAt: string;
-  startDate: string;
-  endDate?: string;
+  startDate: string;  // дата получения
+  endDate?: string;   // дата собеседования
   vendorStatus: VendorStatus;
   comments: RequestComment[];
   history: StatusHistoryItem[];
@@ -55,4 +55,3 @@ export type UpdateRequestStatusPayload = {
 export type RequestDraft = CreateRequestPayload;
 
 export type RequestStatusFilter = RequestStatus | "all";
-

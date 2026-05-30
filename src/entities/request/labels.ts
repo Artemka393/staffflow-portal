@@ -7,36 +7,35 @@ import {
 } from "./types";
 
 export const requestTypeLabels: Record<RequestType, string> = {
-  vacation: "Отпуск",
-  business_trip: "Командировка",
-  access: "Доступы",
-  equipment: "Оборудование"
+  invitation: "Приглашение",
+  response:   "Мой отклик",
+  interview:  "Собеседование",
+  offer:      "Оффер"
 };
 
 export const requestStatusLabels: Record<RequestStatus, string> = {
-  pending: "Новая",
-  in_review: "На согласовании",
-  approved: "Согласована",
-  rejected: "Отклонена"
+  pending:   "Новое",
+  in_review: "Рассматривается",
+  approved:  "Принято",
+  rejected:  "Отказано"
 };
 
 export const requestStatusFilters: Array<{ value: RequestStatusFilter; label: string }> = [
-  { value: "all", label: "Все" },
-  { value: "pending", label: "Новые" },
-  { value: "in_review", label: "Согласование" },
-  { value: "approved", label: "Согласованы" },
-  { value: "rejected", label: "Отклонены" }
+  { value: "all",       label: "Все" },
+  { value: "pending",   label: "Новые" },
+  { value: "in_review", label: "В процессе" },
+  { value: "approved",  label: "Принято" },
+  { value: "rejected",  label: "Отказано" }
 ];
 
 export const requestPriorityLabels: Record<RequestPriority, string> = {
-  normal: "Обычный",
-  high: "Высокий"
+  normal: "Интересно",
+  high:   "Очень интересно"
 };
 
 export const vendorStatusLabels: Record<VendorStatus, string> = {
-  not_required: "Не требуется",
-  queued: "Ожидает синхронизации",
-  synced: "Синхронизировано",
-  failed: "Ошибка интеграции"
+  not_required: "—",
+  queued:       "Жду ответа",
+  synced:       "Ответил(а)",
+  failed:       "Нет ответа"
 };
-

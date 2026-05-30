@@ -3,17 +3,18 @@ import { useUnit } from "effector-react";
 import {
   AlertTriangle,
   ArrowRight,
-  BriefcaseBusiness,
+  Award,
+  Briefcase,
   CalendarDays,
   CheckCircle2,
   Clock3,
   FilePlus2,
   Filter,
-  Laptop,
   Loader2,
+  Mail,
   RefreshCw,
   Search,
-  ShieldCheck,
+  Send,
   XCircle
 } from "lucide-react";
 import { Portfolio } from "./Portfolio";
@@ -59,10 +60,10 @@ import { formatDate, formatDateTime } from "../shared/lib/date";
 import * as S from "./styles";
 
 const typeIcons: Record<RequestType, typeof CalendarDays> = {
-  vacation: CalendarDays,
-  business_trip: BriefcaseBusiness,
-  access: ShieldCheck,
-  equipment: Laptop
+  invitation: Mail,
+  response:   Send,
+  interview:  CalendarDays,
+  offer:      Award,
 };
 
 const nextStatuses: RequestStatus[] = ["pending", "in_review", "approved", "rejected"];
@@ -138,10 +139,10 @@ function Portal({ onBack }: { onBack: () => void }) {
           <S.IconButton type="button" title="← Портфолио" onClick={onBack}>
             <ArrowRight size={18} style={{ transform: "rotate(180deg)" }} />
           </S.IconButton>
-          <S.BrandMark>SF</S.BrandMark>
+          <S.BrandMark>CF</S.BrandMark>
           <div>
-            <S.BrandName>StaffFlow Portal</S.BrandName>
-            <S.BrandMeta>Центр портальных решений</S.BrandMeta>
+            <S.BrandName>CareerFlow</S.BrandName>
+            <S.BrandMeta>Трекер вакансий и приглашений</S.BrandMeta>
           </div>
         </S.Brand>
 
@@ -157,7 +158,7 @@ function Portal({ onBack }: { onBack: () => void }) {
           </S.IconButton>
           <S.PrimaryButton type="button" onClick={toggleCreatePanel}>
             <FilePlus2 size={18} />
-            Новая заявка
+            Добавить вакансию
           </S.PrimaryButton>
         </S.TopActions>
       </S.TopBar>
@@ -166,8 +167,8 @@ function Portal({ onBack }: { onBack: () => void }) {
         <S.MainColumn>
           <S.SectionHeader>
             <div>
-              <S.Eyebrow>Операционный обзор</S.Eyebrow>
-              <S.Title>Заявки сотрудников</S.Title>
+              <S.Eyebrow>Поиск работы · Нижний Новгород</S.Eyebrow>
+              <S.Title>Вакансии и приглашения</S.Title>
             </div>
             <S.StatusLine aria-live="polite">
               {isBusy ? (
@@ -185,11 +186,11 @@ function Portal({ onBack }: { onBack: () => void }) {
           </S.SectionHeader>
 
           <S.MetricsGrid>
-            <Metric label="Всего" value={dashboardStats.total} tone="neutral" />
-            <Metric label="В работе" value={dashboardStats.open} tone="blue" />
-            <Metric label="Согласовано" value={dashboardStats.approved} tone="green" />
-            <Metric label="Ошибки интеграций" value={dashboardStats.integrationIssues} tone="red" />
-            <Metric label="Высокий приоритет" value={dashboardStats.highPriority} tone="amber" />
+            <Metric label="Всего вакансий"   value={dashboardStats.total}      tone="neutral" />
+            <Metric label="Активных"         value={dashboardStats.active}      tone="blue" />
+            <Metric label="Собеседований"    value={dashboardStats.interviews}  tone="amber" />
+            <Metric label="Офферов"          value={dashboardStats.offers}      tone="green" />
+            <Metric label="Отказов"          value={dashboardStats.rejected}    tone="red" />
           </S.MetricsGrid>
 
           <S.Toolbar>
@@ -197,7 +198,7 @@ function Portal({ onBack }: { onBack: () => void }) {
               <Search size={18} />
               <input
                 aria-label="Поиск по заявкам"
-                placeholder="Поиск по номеру, сотруднику или описанию"
+                placeholder="Поиск по компании, вакансии или заметкам"
                 value={searchQuery}
                 onChange={(event) => setSearch(event.target.value)}
               />
@@ -322,14 +323,14 @@ function CreateRequestPanel({
     <S.CreatePanel>
       <S.PanelHeader>
         <div>
-          <S.PanelTitle>Создать заявку</S.PanelTitle>
-          <S.PanelMeta>Моковый REST API сохранит заявку и добавит ее в список.</S.PanelMeta>
+          <S.PanelTitle>Добавить вакансию</S.PanelTitle>
+          <S.PanelMeta>Добавь новую вакансию или приглашение для отслеживания.</S.PanelMeta>
         </div>
       </S.PanelHeader>
 
       <S.FormGrid>
         <S.Field>
-          <span>Тип</span>
+          <span>Источник</span>
           <select
             value={draft.type}
             onChange={(event) => onChange({ type: event.target.value as RequestType })}
@@ -343,7 +344,7 @@ function CreateRequestPanel({
         </S.Field>
 
         <S.Field>
-          <span>Приоритет</span>
+          <span>Интерес</span>
           <select
             value={draft.priority}
             onChange={(event) =>
@@ -359,7 +360,7 @@ function CreateRequestPanel({
         </S.Field>
 
         <S.Field>
-          <span>Дата начала</span>
+          <span>Дата получения</span>
           <input
             type="date"
             value={draft.startDate}
@@ -368,7 +369,7 @@ function CreateRequestPanel({
         </S.Field>
 
         <S.Field>
-          <span>Дата окончания</span>
+          <span>Дата собеседования</span>
           <input
             type="date"
             value={draft.endDate ?? ""}
@@ -380,7 +381,7 @@ function CreateRequestPanel({
           <span>Тема</span>
           <input
             value={draft.title}
-            placeholder="Например, доступ к тестовому стенду"
+            placeholder="Например: Junior Frontend Developer в Яндексе"
             onChange={(event) => onChange({ title: event.target.value })}
           />
         </S.FieldWide>
@@ -390,7 +391,7 @@ function CreateRequestPanel({
           <textarea
             rows={3}
             value={draft.description}
-            placeholder="Кратко опиши контекст и ожидаемый результат"
+            placeholder="Стек, зарплата, формат работы, впечатления от вакансии..."
             onChange={(event) => onChange({ description: event.target.value })}
           />
         </S.FieldWide>
@@ -437,9 +438,9 @@ function RequestRow({
           </S.StatusBadge>
         </S.RequestTopLine>
         <S.RequestMeta>
-          <span>{request.id}</span>
           <span>{request.employee}</span>
           <span>{requestTypeLabels[request.type]}</span>
+          <span>{request.department}</span>
           <span>{formatDate(request.startDate)}</span>
         </S.RequestMeta>
       </S.RequestSummary>
@@ -461,8 +462,8 @@ function RequestDetails({
     return (
       <S.DetailsPanel>
         <S.EmptyState>
-          <FilePlus2 size={24} />
-          Выбери заявку
+          <Briefcase size={24} />
+          Выбери вакансию
         </S.EmptyState>
       </S.DetailsPanel>
     );
@@ -483,13 +484,13 @@ function RequestDetails({
       <S.Description>{request.description}</S.Description>
 
       <S.InfoGrid>
-        <Info label="Сотрудник" value={request.employee} />
-        <Info label="Подразделение" value={request.department} />
-        <Info label="Согласующий" value={request.approver} />
-        <Info label="Период" value={formatPeriod(request)} />
-        <Info label="Приоритет" value={requestPriorityLabels[request.priority]} />
+        <Info label="Компания"          value={request.employee} />
+        <Info label="Должность"         value={request.department} />
+        <Info label="Рекрутер / контакт" value={request.approver} />
+        <Info label="Дата собеседования" value={request.endDate ? formatDate(request.endDate) : "Не назначено"} />
+        <Info label="Интерес"           value={requestPriorityLabels[request.priority]} />
         <Info
-          label="Интеграция"
+          label="Статус ответа"
           value={vendorStatusLabels[request.vendorStatus]}
           vendorStatus={request.vendorStatus}
         />

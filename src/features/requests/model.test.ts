@@ -14,32 +14,32 @@ import { EmployeeRequest } from "../../entities/request/types";
 
 const baseRequests: EmployeeRequest[] = [
   {
-    id: "REQ-1",
-    title: "Отпуск",
-    description: "Плановый отпуск",
-    type: "vacation",
+    id: "VAC-T1",
+    title: "Junior Frontend Developer",
+    description: "Оффер от Тинькофф",
+    type: "offer",
     status: "approved",
-    priority: "normal",
-    employee: "Артем К.",
-    department: "Портальные решения",
-    approver: "Марина Л.",
-    createdAt: "2026-04-01T08:00:00.000Z",
+    priority: "high",
+    employee: "Тинькофф",
+    department: "Frontend разработчик",
+    approver: "Михаил С.",
+    createdAt: "2026-05-01T08:00:00.000Z",
     startDate: "2026-05-01",
-    vendorStatus: "not_required",
+    vendorStatus: "synced",
     comments: [],
     history: []
   },
   {
-    id: "REQ-2",
-    title: "Доступ к API",
-    description: "Права для тестового стенда",
-    type: "access",
+    id: "VAC-T2",
+    title: "Junior React разработчик",
+    description: "Отклик на вакансию Авито",
+    type: "response",
     status: "pending",
     priority: "high",
-    employee: "Ирина С.",
-    department: "Интеграции",
-    approver: "Павел Н.",
-    createdAt: "2026-04-02T08:00:00.000Z",
+    employee: "Авито",
+    department: "Frontend разработчик",
+    approver: "Дмитрий Р.",
+    createdAt: "2026-05-02T08:00:00.000Z",
     startDate: "2026-05-02",
     vendorStatus: "queued",
     comments: [],
@@ -63,9 +63,9 @@ describe("requests model", () => {
   it("creates request from valid draft and resets the form", async () => {
     const createdRequest: EmployeeRequest = {
       ...baseRequests[1],
-      id: "REQ-3",
-      title: "Командировка",
-      type: "business_trip",
+      id: "VAC-T3",
+      title: "Frontend стажёр",
+      type: "invitation",
       status: "pending"
     };
 
@@ -79,9 +79,9 @@ describe("requests model", () => {
     await allSettled(requestDraftChanged, {
       scope,
       params: {
-        title: "Командировка",
-        description: "Встреча с командой эксплуатации",
-        type: "business_trip",
+        title: "Frontend стажёр",
+        description: "Приглашение от IT-студии",
+        type: "invitation",
         startDate: "2026-05-10"
       }
     });
@@ -91,4 +91,3 @@ describe("requests model", () => {
     expect(scope.getState($requestDraft).title).toBe("");
   });
 });
-

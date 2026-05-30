@@ -21,8 +21,8 @@ function makeId(prefix: string): string {
 }
 
 function resolveVendorStatus(type: CreateRequestPayload["type"]): VendorStatus {
-  if (type === "access") return "queued";
-  if (type === "equipment") return "queued";
+  if (type === "invitation") return "queued";
+  if (type === "interview")  return "queued";
   return "not_required";
 }
 
@@ -43,9 +43,9 @@ export async function createRequest(payload: CreateRequestPayload): Promise<Empl
     id: makeId("REQ"),
     ...payload,
     status: "pending",
-    employee: "Артем К.",
-    department: "Портальные решения",
-    approver: "Марина Л.",
+    employee: "Новая компания",
+    department: "Frontend разработчик",
+    approver: "—",
     createdAt,
     vendorStatus: resolveVendorStatus(payload.type),
     comments: [],
@@ -53,7 +53,7 @@ export async function createRequest(payload: CreateRequestPayload): Promise<Empl
       {
         id: makeId("H"),
         status: "pending",
-        label: "Заявка создана",
+        label: "Вакансия добавлена",
         createdAt
       }
     ]

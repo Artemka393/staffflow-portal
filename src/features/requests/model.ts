@@ -37,7 +37,7 @@ export const updateRequestStatusFx = createEffect<
 const initialDraft: RequestDraft = {
   title: "",
   description: "",
-  type: "vacation",
+  type: "invitation",
   priority: "normal",
   startDate: todayInputValue(),
   endDate: ""
@@ -93,11 +93,11 @@ export const $filteredRequests = combine(
       const matchesSearch =
         !normalizedQuery ||
         [
-          request.id,
           request.title,
           request.description,
           request.employee,
-          request.department
+          request.department,
+          request.approver
         ]
           .join(" ")
           .toLowerCase()
@@ -116,21 +116,19 @@ export const $selectedRequest = combine(
 );
 
 export const $dashboardStats = $requests.map((requests) => {
-  const open = requests.filter((request) =>
-    ["pending", "in_review"].includes(request.status)
+  const active = requests.filter((r) =>
+    ["pending", "in_review"].includes(r.status)
   ).length;
-  const approved = requests.filter((request) => request.status === "approved").length;
-  const integrationIssues = requests.filter(
-    (request) => request.vendorStatus === "failed"
-  ).length;
-  const highPriority = requests.filter((request) => request.priority === "high").length;
+  const interviews = requests.filter((r) => r.type === "interview").length;
+  const offers = requests.filter((r) => r.status === "approved").length;
+  const rejected = requests.filter((r) => r.status === "rejected").length;
 
   return {
     total: requests.length,
-    open,
-    approved,
-    integrationIssues,
-    highPriority
+    active,
+    interviews,
+    offers,
+    rejected
   };
 });
 

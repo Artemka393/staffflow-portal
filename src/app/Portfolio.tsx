@@ -17,10 +17,10 @@ const SKILLS = [
 
 const PROJECTS = [
   {
-    title: "StaffFlow Portal",
-    desc: "Корпоративный портал управления заявками сотрудников. Отпуска, командировки, доступы, оборудование — с историей и фильтрами.",
+    title: "CareerFlow — трекер вакансий",
+    desc: "Приложение для отслеживания приглашений на работу и откликов на вакансии. Статусы, история, фильтры, аналитика по офферам и собеседованиям.",
     tags: ["React", "TypeScript", "Effector", "styled-components", "Jest", "Vite"],
-    icon: "🏢",
+    icon: "💼",
     href: "#portal",
     featured: true,
     isPortal: true,
@@ -288,7 +288,7 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
             </P.NavLink>
           ))}
           <P.NavPortalBtn onClick={onEnterPortal}>
-            StaffFlow Portal →
+            CareerFlow →
           </P.NavPortalBtn>
         </P.NavLinks>
       </P.Nav>
@@ -586,7 +586,7 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
                 Зарплатный ожидания — от 35 000 ₽.
               </p>
               <P.CTAButton onClick={onEnterPortal}>
-                Посмотреть StaffFlow Portal →
+                Открыть CareerFlow →
               </P.CTAButton>
             </P.CTABox>
           </P.ContactRight>

@@ -2,137 +2,148 @@ import { EmployeeRequest } from "./types";
 
 export const mockRequests: EmployeeRequest[] = [
   {
-    id: "REQ-1042",
-    title: "Отпуск на майские даты",
-    description: "Плановый отпуск с передачей задач дежурному разработчику.",
-    type: "vacation",
+    id: "VAC-001",
+    title: "Junior Frontend React Developer",
+    description: "Разработка пользовательских интерфейсов для внутренних продуктов. Стек: React, TypeScript, Redux. Гибридный формат, офис в Москве. Зарплата 60 000–90 000 ₽.",
+    type: "invitation",
     status: "in_review",
-    priority: "normal",
-    employee: "Артем К.",
-    department: "Портальные решения",
-    approver: "Марина Л.",
-    createdAt: "2026-04-27T09:20:00.000Z",
-    startDate: "2026-05-06",
-    endDate: "2026-05-12",
-    vendorStatus: "not_required",
+    priority: "high",
+    employee: "Яндекс",
+    department: "Frontend разработчик",
+    approver: "Анастасия В. (HR)",
+    createdAt: "2026-05-20T10:00:00.000Z",
+    startDate: "2026-05-20",
+    endDate: "2026-05-28",
+    vendorStatus: "synced",
     comments: [
       {
         id: "C-1",
-        author: "Марина Л.",
-        text: "Проверь, пожалуйста, что дежурство на период отпуска закрыто.",
-        createdAt: "2026-04-27T12:15:00.000Z"
+        author: "Анастасия В.",
+        text: "Приглашаем на техническое собеседование. Ожидаем вас 28 мая в 15:00 по видеосвязи.",
+        createdAt: "2026-05-21T09:30:00.000Z"
       }
     ],
     history: [
-      {
-        id: "H-1",
-        status: "pending",
-        label: "Заявка создана",
-        createdAt: "2026-04-27T09:20:00.000Z"
-      },
-      {
-        id: "H-2",
-        status: "in_review",
-        label: "Передана руководителю",
-        createdAt: "2026-04-27T10:05:00.000Z"
-      }
+      { id: "H-1", status: "pending",   label: "Получено приглашение",       createdAt: "2026-05-20T10:00:00.000Z" },
+      { id: "H-2", status: "in_review", label: "Назначено собеседование",    createdAt: "2026-05-21T09:30:00.000Z" }
     ]
   },
   {
-    id: "REQ-1041",
-    title: "Доступ к стенду интеграций",
-    description: "Нужен доступ к тестовому стенду внешнего вендора для проверки статусов.",
-    type: "access",
+    id: "VAC-002",
+    title: "Junior Frontend Developer",
+    description: "Работа в команде разработки мобильного банка. React Native + TypeScript. Полностью удалённо. Зарплата 55 000–80 000 ₽ + бонусы. Обучение за счёт компании.",
+    type: "response",
     status: "approved",
     priority: "high",
-    employee: "Ирина С.",
-    department: "Интеграции",
-    approver: "Павел Н.",
-    createdAt: "2026-04-25T14:40:00.000Z",
-    startDate: "2026-04-26",
+    employee: "Тинькофф",
+    department: "Frontend разработчик",
+    approver: "Михаил С. (Tech Lead)",
+    createdAt: "2026-05-15T14:00:00.000Z",
+    startDate: "2026-05-15",
+    endDate: "2026-05-22",
     vendorStatus: "synced",
     comments: [
       {
         id: "C-2",
-        author: "Павел Н.",
-        text: "Доступ выдан, проверь VPN-профиль.",
-        createdAt: "2026-04-26T08:30:00.000Z"
+        author: "Михаил С.",
+        text: "Отличное выполнение тестового задания! Готовы сделать оффер. Свяжемся завтра для обсуждения условий.",
+        createdAt: "2026-05-23T11:00:00.000Z"
       }
     ],
     history: [
-      {
-        id: "H-3",
-        status: "pending",
-        label: "Заявка создана",
-        createdAt: "2026-04-25T14:40:00.000Z"
-      },
-      {
-        id: "H-4",
-        status: "approved",
-        label: "Доступ согласован",
-        createdAt: "2026-04-26T08:30:00.000Z"
-      }
+      { id: "H-3", status: "pending",   label: "Отправлен отклик",           createdAt: "2026-05-15T14:00:00.000Z" },
+      { id: "H-4", status: "in_review", label: "Приглашение на тестовое",    createdAt: "2026-05-17T10:00:00.000Z" },
+      { id: "H-5", status: "approved",  label: "Получен оффер 🎉",           createdAt: "2026-05-23T11:00:00.000Z" }
     ]
   },
   {
-    id: "REQ-1040",
-    title: "Командировка в офис поддержки",
-    description: "Рабочая встреча с командой эксплуатации портальных сервисов.",
-    type: "business_trip",
+    id: "VAC-003",
+    title: "Frontend разработчик (стажёр)",
+    description: "Стажировка в команде веб-сервисов. React + Vue.js. Наставник от компании. Возможен перевод в штат по итогам. Зарплата 45 000–55 000 ₽.",
+    type: "invitation",
     status: "pending",
     priority: "normal",
-    employee: "Дмитрий Р.",
-    department: "Эксплуатация",
-    approver: "Марина Л.",
-    createdAt: "2026-04-24T11:10:00.000Z",
-    startDate: "2026-05-14",
-    endDate: "2026-05-15",
-    vendorStatus: "not_required",
+    employee: "Сбер",
+    department: "Frontend разработчик",
+    approver: "Елена К. (Рекрутер)",
+    createdAt: "2026-05-25T09:00:00.000Z",
+    startDate: "2026-05-25",
+    vendorStatus: "queued",
     comments: [],
     history: [
-      {
-        id: "H-5",
-        status: "pending",
-        label: "Заявка создана",
-        createdAt: "2026-04-24T11:10:00.000Z"
-      }
+      { id: "H-6", status: "pending", label: "Получено приглашение", createdAt: "2026-05-25T09:00:00.000Z" }
     ]
   },
   {
-    id: "REQ-1039",
-    title: "Ноутбук для нового сотрудника",
-    description: "Комплект оборудования для выхода сотрудника на проектную команду.",
-    type: "equipment",
-    status: "rejected",
+    id: "VAC-004",
+    title: "Junior React разработчик",
+    description: "Разработка рекламной платформы для бизнеса. Стек: React, TypeScript, Node.js. Гибрид (2 дня в офисе). Нижний Новгород или удалённо. Зарплата 50 000–70 000 ₽.",
+    type: "interview",
+    status: "in_review",
     priority: "high",
-    employee: "Ольга М.",
-    department: "HR Tech",
-    approver: "Павел Н.",
-    createdAt: "2026-04-22T07:55:00.000Z",
-    startDate: "2026-04-29",
-    vendorStatus: "failed",
+    employee: "Авито",
+    department: "Fullstack разработчик",
+    approver: "Дмитрий Р. (HR)",
+    createdAt: "2026-05-18T11:00:00.000Z",
+    startDate: "2026-05-18",
+    endDate: "2026-05-26",
+    vendorStatus: "synced",
     comments: [
       {
         id: "C-3",
-        author: "Павел Н.",
-        text: "Не хватает табельного номера сотрудника. Создай новую заявку с полными данными.",
-        createdAt: "2026-04-22T13:20:00.000Z"
+        author: "Дмитрий Р.",
+        text: "Первый этап пройден успешно. Приглашаем на финальное интервью с тимлидом 26 мая.",
+        createdAt: "2026-05-22T14:00:00.000Z"
       }
     ],
     history: [
+      { id: "H-7", status: "pending",   label: "Отправлен отклик",           createdAt: "2026-05-18T11:00:00.000Z" },
+      { id: "H-8", status: "in_review", label: "HR-интервью пройдено",       createdAt: "2026-05-22T14:00:00.000Z" }
+    ]
+  },
+  {
+    id: "VAC-005",
+    title: "Fullstack разработчик (Junior)",
+    description: "Разработка цифровых продуктов для B2B сегмента. React + Python/Django. Полный офис, Нижний Новгород. Зарплата 40 000–55 000 ₽.",
+    type: "response",
+    status: "rejected",
+    priority: "normal",
+    employee: "МТС Digital",
+    department: "Fullstack разработчик",
+    approver: "Ольга М. (HR)",
+    createdAt: "2026-05-10T08:00:00.000Z",
+    startDate: "2026-05-10",
+    vendorStatus: "failed",
+    comments: [
       {
-        id: "H-6",
-        status: "pending",
-        label: "Заявка создана",
-        createdAt: "2026-04-22T07:55:00.000Z"
-      },
-      {
-        id: "H-7",
-        status: "rejected",
-        label: "Отклонена на проверке данных",
-        createdAt: "2026-04-22T13:20:00.000Z"
+        id: "C-4",
+        author: "Ольга М.",
+        text: "К сожалению, мы выбрали кандидата с опытом от 2 лет. Рекомендуем откликнуться через 6 месяцев.",
+        createdAt: "2026-05-14T16:00:00.000Z"
       }
+    ],
+    history: [
+      { id: "H-9",  status: "pending",   label: "Отправлен отклик",          createdAt: "2026-05-10T08:00:00.000Z" },
+      { id: "H-10", status: "in_review", label: "Резюме на рассмотрении",    createdAt: "2026-05-12T10:00:00.000Z" },
+      { id: "H-11", status: "rejected",  label: "Отказ от компании",         createdAt: "2026-05-14T16:00:00.000Z" }
+    ]
+  },
+  {
+    id: "VAC-006",
+    title: "Frontend стажёр / Junior",
+    description: "Небольшая продуктовая студия в Нижнем Новгороде. Vue.js + Node.js. Дружная команда из 8 человек. Гибкий график. Зарплата от 35 000 ₽, рост через 3 месяца.",
+    type: "invitation",
+    status: "pending",
+    priority: "normal",
+    employee: "IT-студия Артифакт",
+    department: "Frontend разработчик",
+    approver: "Никита Л. (CEO)",
+    createdAt: "2026-05-27T13:00:00.000Z",
+    startDate: "2026-05-27",
+    vendorStatus: "queued",
+    comments: [],
+    history: [
+      { id: "H-12", status: "pending", label: "Получено приглашение", createdAt: "2026-05-27T13:00:00.000Z" }
     ]
   }
 ];
-
