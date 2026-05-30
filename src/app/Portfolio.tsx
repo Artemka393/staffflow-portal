@@ -305,15 +305,10 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
           <P.HeroRight>
             <P.PhotoFrame>
               <P.PhotoInner>
-                <P.AvatarPlaceholder>
-                  <span>АШ</span>
-                  <div className="ring ring-1" />
-                  <div className="ring ring-2" />
-                  <div className="ring ring-3" />
-                  <div className="dot dot-1">JS</div>
-                  <div className="dot dot-2">TS</div>
-                  <div className="dot dot-3">🔥</div>
-                </P.AvatarPlaceholder>
+                <img
+                  src="photo.jpg"
+                  alt="Артём Шестак"
+                />
               </P.PhotoInner>
               <P.PhotoBadge>
                 <div style={{ fontSize: 28 }}>💼</div>
