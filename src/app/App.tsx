@@ -9,16 +9,14 @@ import {
   Clock3,
   FilePlus2,
   Filter,
-  Github,
   Laptop,
   Loader2,
-  Mail,
   RefreshCw,
   Search,
-  Send,
   ShieldCheck,
   XCircle
 } from "lucide-react";
+import { Portfolio } from "./Portfolio";
 import {
   $dashboardStats,
   $filteredRequests,
@@ -73,93 +71,13 @@ export function App() {
   const [showPortal, setShowPortal] = useState(false);
 
   if (!showPortal) {
-    return <LandingPage onEnter={() => setShowPortal(true)} />;
+    return <Portfolio onEnterPortal={() => setShowPortal(true)} />;
   }
 
-  return <Portal />;
+  return <Portal onBack={() => setShowPortal(false)} />;
 }
 
-function LandingPage({ onEnter }: { onEnter: () => void }) {
-  return (
-    <S.HeroShell>
-      <S.HeroNav>
-        <S.HeroNavLogo>
-          Артём<span>.</span>dev
-        </S.HeroNavLogo>
-        <S.HeroNavLinks>
-          <S.HeroNavLink data-active="true">Главная</S.HeroNavLink>
-          <S.HeroNavLink
-            href="https://github.com/Artemka393"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Портфолио
-          </S.HeroNavLink>
-          <S.HeroNavLink
-            href="https://hh.ru"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Резюме
-          </S.HeroNavLink>
-          <S.HeroNavLink href="mailto:kyznechiki228@gmail.com">
-            Контакты
-          </S.HeroNavLink>
-        </S.HeroNavLinks>
-      </S.HeroNav>
-
-      <S.HeroContent>
-        <S.HeroEyebrow>Junior Frontend / Fullstack разработчик</S.HeroEyebrow>
-        <S.HeroTitle>Артём Шестак</S.HeroTitle>
-        <S.HeroSubtitle>
-          Создаю современные веб-приложения на{" "}
-          <span>React, TypeScript и Vue.js</span>.
-          Ниже — один из моих pet-проектов: корпоративный портал управления заявками.
-        </S.HeroSubtitle>
-        <S.HeroActions>
-          <S.HeroButton onClick={onEnter}>
-            Открыть StaffFlow Portal →
-          </S.HeroButton>
-          <S.HeroOutlineButton
-            href="https://github.com/Artemka393"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Github size={18} />
-            GitHub
-          </S.HeroOutlineButton>
-        </S.HeroActions>
-      </S.HeroContent>
-
-      <S.HeroSocials>
-        <S.HeroSocialBtn
-          href="https://t.me/lnc0mpetent"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Telegram"
-        >
-          <Send size={18} />
-        </S.HeroSocialBtn>
-        <S.HeroSocialBtn
-          href="https://github.com/Artemka393"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="GitHub"
-        >
-          <Github size={18} />
-        </S.HeroSocialBtn>
-        <S.HeroSocialBtn
-          href="mailto:kyznechiki228@gmail.com"
-          title="Email"
-        >
-          <Mail size={18} />
-        </S.HeroSocialBtn>
-      </S.HeroSocials>
-    </S.HeroShell>
-  );
-}
-
-function Portal() {
+function Portal({ onBack }: { onBack: () => void }) {
   const {
     dashboardStats,
     filteredRequests,
@@ -217,6 +135,9 @@ function Portal() {
       <S.ResponsiveStyles />
       <S.TopBar>
         <S.Brand>
+          <S.IconButton type="button" title="← Портфолио" onClick={onBack}>
+            <ArrowRight size={18} style={{ transform: "rotate(180deg)" }} />
+          </S.IconButton>
           <S.BrandMark>SF</S.BrandMark>
           <div>
             <S.BrandName>StaffFlow Portal</S.BrandName>
