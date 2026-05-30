@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Github, Mail, Send, ExternalLink, Code2, Briefcase, BookOpen, Layers } from "lucide-react";
+import { Github, Mail, Send, ExternalLink, Phone } from "lucide-react";
 import * as P from "./portfolio-styles";
 
 // ─── Данные ──────────────────────────────────────────────────────────────────
@@ -303,15 +303,15 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
           <P.HeroRight>
             <P.PhotoFrame>
               <P.PhotoInner>
-                <img
-                  src="https://artemka393.github.io/staffflow-portal/photo.jpg"
-                  alt="Артём Шестак"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                    (e.target as HTMLImageElement).parentElement!.style.background =
-                      "linear-gradient(135deg, #1f1a14, #222)";
-                  }}
-                />
+                <P.AvatarPlaceholder>
+                  <span>АШ</span>
+                  <div className="ring ring-1" />
+                  <div className="ring ring-2" />
+                  <div className="ring ring-3" />
+                  <div className="dot dot-1">JS</div>
+                  <div className="dot dot-2">TS</div>
+                  <div className="dot dot-3">🔥</div>
+                </P.AvatarPlaceholder>
               </P.PhotoInner>
               <P.PhotoBadge>
                 <div style={{ fontSize: 28 }}>💼</div>
@@ -522,6 +522,13 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
                 <P.ContactLinkText>
                   <div>Telegram</div>
                   <div>@lnc0mpetent</div>
+                </P.ContactLinkText>
+              </P.ContactLink>
+              <P.ContactLink href="tel:+79307462550" className="reveal">
+                <P.ContactLinkIcon><Phone size={20} /></P.ContactLinkIcon>
+                <P.ContactLinkText>
+                  <div>Телефон</div>
+                  <div>+7 (930) 746-25-50</div>
                 </P.ContactLinkText>
               </P.ContactLink>
               <P.ContactLink href="mailto:kyznechiki228@gmail.com" className="reveal">

@@ -366,6 +366,59 @@ export const PhotoInner = styled.div`
   }
 `;
 
+const orbitItem = keyframes`
+  from { transform: rotate(var(--start)) translateX(110px) rotate(calc(-1 * var(--start))); }
+  to   { transform: rotate(calc(var(--start) + 360deg)) translateX(110px) rotate(calc(-1 * (var(--start) + 360deg))); }
+`;
+
+export const AvatarPlaceholder = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1208, #1c1c1c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  > span {
+    font-size: 80px;
+    font-weight: 900;
+    color: #FF6600;
+    letter-spacing: -4px;
+    z-index: 2;
+    text-shadow: 0 0 60px rgba(255,102,0,0.5);
+    user-select: none;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255,102,0,0.15);
+    pointer-events: none;
+  }
+  .ring-1 { width: 180px; height: 180px; border-color: rgba(255,102,0,0.25); }
+  .ring-2 { width: 250px; height: 250px; }
+  .ring-3 { width: 320px; height: 320px; border-color: rgba(255,102,0,0.08); }
+
+  .dot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1f1f1f;
+    border: 1px solid rgba(255,102,0,0.3);
+    display: grid;
+    place-items: center;
+    font-size: 11px;
+    font-weight: 800;
+    color: #FF6600;
+    z-index: 3;
+  }
+  .dot-1 { --start: 0deg;   animation: ${orbitItem} 6s linear infinite; }
+  .dot-2 { --start: 120deg; animation: ${orbitItem} 6s linear infinite; }
+  .dot-3 { --start: 240deg; animation: ${orbitItem} 6s linear infinite; }
+`;
+
 export const PhotoBadge = styled.div`
   position: absolute;
   bottom: -16px;
