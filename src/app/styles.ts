@@ -776,6 +776,244 @@ export const EmptyState = styled.div`
   }
 `;
 
+// ─── Landing / Hero ────────────────────────────────────────────────────────
+
+export const HeroShell = styled.div`
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1920&q=80");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.28);
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(108, 99, 255, 0.18) 0%,
+      rgba(0, 0, 0, 0.55) 50%,
+      rgba(0, 212, 255, 0.1) 100%
+    );
+    z-index: 1;
+  }
+`;
+
+export const HeroNav = styled.nav`
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+`;
+
+export const HeroNavLogo = styled.div`
+  font-size: 18px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+
+  span {
+    color: #6c63ff;
+  }
+`;
+
+export const HeroNavLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const HeroNavLink = styled.a`
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover, &[data-active="true"] {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &[data-active="true"] {
+    border-bottom: 2px solid #6c63ff;
+    border-radius: 8px 8px 0 0;
+  }
+`;
+
+export const HeroContent = styled.div`
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 48px 80px;
+  max-width: 700px;
+`;
+
+export const HeroEyebrow = styled.div`
+  color: #6c63ff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+`;
+
+export const HeroTitle = styled.h1`
+  margin: 0 0 16px;
+  color: #ffffff;
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+`;
+
+export const HeroSubtitle = styled.p`
+  margin: 0 0 36px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 480px;
+
+  span {
+    color: #00d4ff;
+    font-weight: 600;
+  }
+`;
+
+export const HeroActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+`;
+
+export const HeroButton = styled.button`
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6c63ff, #4f8ef7);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.25s;
+  box-shadow: 0 8px 32px rgba(108, 99, 255, 0.4);
+  letter-spacing: -0.2px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(108, 99, 255, 0.6);
+    background: linear-gradient(135deg, #7c74ff, #60a0ff);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+export const HeroOutlineButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 50px;
+  padding: 0 24px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+`;
+
+export const HeroSocials = styled.div`
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 48px;
+`;
+
+export const HeroSocialBtn = styled.a`
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #6c63ff;
+    background: rgba(108, 99, 255, 0.2);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 99, 255, 0.35);
+  }
+`;
+
+export const HeroScrollHint = styled.div`
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+`;
+
+// ─── End Landing ────────────────────────────────────────────────────────────
+
 export const ResponsiveStyles = createGlobalStyle`
   @media (max-width: 1100px) {
   ${MetricsGrid} {
