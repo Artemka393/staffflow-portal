@@ -100,6 +100,136 @@ export const Wrapper = styled.div`
   color: #ffffff;
   font-family: Inter, system-ui, sans-serif;
   overflow-x: hidden;
+
+  /* Точечная сетка на весь сайт */
+  background-image: radial-gradient(
+    rgba(255, 102, 0, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+`;
+
+/* ── Слой фоновых декораций ─────────────────────────────────────────────── */
+
+export const BgLayer = styled.div`
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+`;
+
+/* Большие размытые сферы-градиенты */
+export const BgOrb = styled.div<{
+  $top?: string; $left?: string; $right?: string; $bottom?: string;
+  $size: string; $color: string; $delay?: string; $alt?: boolean;
+}>`
+  position: absolute;
+  top: ${({ $top }) => $top ?? "auto"};
+  left: ${({ $left }) => $left ?? "auto"};
+  right: ${({ $right }) => $right ?? "auto"};
+  bottom: ${({ $bottom }) => $bottom ?? "auto"};
+  width: ${({ $size }) => $size};
+  height: ${({ $size }) => $size};
+  border-radius: 50%;
+  background: radial-gradient(circle, ${({ $color }) => $color} 0%, transparent 70%);
+  filter: blur(60px);
+  animation: ${({ $alt }) => ($alt ? moveOrb2 : moveOrb)} 14s ease-in-out infinite;
+  animation-delay: ${({ $delay }) => $delay ?? "0s"};
+`;
+
+/* Геометрические кольца */
+export const BgRing = styled.div<{
+  $top?: string; $left?: string; $right?: string; $bottom?: string;
+  $size: string; $opacity?: string; $duration?: string; $reverse?: boolean;
+}>`
+  position: absolute;
+  top: ${({ $top }) => $top ?? "auto"};
+  left: ${({ $left }) => $left ?? "auto"};
+  right: ${({ $right }) => $right ?? "auto"};
+  bottom: ${({ $bottom }) => $bottom ?? "auto"};
+  width: ${({ $size }) => $size};
+  height: ${({ $size }) => $size};
+  border-radius: 50%;
+  border: 1px solid rgba(255, 102, 0, ${({ $opacity }) => $opacity ?? "0.15"});
+  animation: ${({ $reverse }) => ($reverse ? rotateSlowReverse : rotateSlow)}
+    ${({ $duration }) => $duration ?? "20s"} linear infinite;
+  transform-origin: center;
+
+  /* Точка-маркер на кольце */
+  &::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #FF6600;
+    box-shadow: 0 0 12px rgba(255, 102, 0, 0.8);
+    transform: translateX(-50%);
+  }
+`;
+
+/* Плавающие квадраты */
+export const BgSquare = styled.div<{
+  $top?: string; $left?: string; $right?: string; $bottom?: string;
+  $size: string; $opacity?: string; $alt?: boolean; $delay?: string;
+}>`
+  position: absolute;
+  top: ${({ $top }) => $top ?? "auto"};
+  left: ${({ $left }) => $left ?? "auto"};
+  right: ${({ $right }) => $right ?? "auto"};
+  bottom: ${({ $bottom }) => $bottom ?? "auto"};
+  width: ${({ $size }) => $size};
+  height: ${({ $size }) => $size};
+  border: 1px solid rgba(255, 102, 0, ${({ $opacity }) => $opacity ?? "0.12"});
+  border-radius: 12px;
+  animation: ${({ $alt }) => ($alt ? floatB : floatA)}
+    ${() => 8 + Math.random() * 4}s ease-in-out infinite;
+  animation-delay: ${({ $delay }) => $delay ?? "0s"};
+  background: rgba(255, 102, 0, 0.02);
+`;
+
+/* Линия сканирования */
+const scanLine = keyframes`
+  0%   { transform: translateY(-100%); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.6; }
+  100% { transform: translateY(3000px); opacity: 0; }
+`;
+
+export const BgScanLine = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 102, 0, 0.4) 30%,
+    rgba(255, 183, 0, 0.6) 50%,
+    rgba(255, 102, 0, 0.4) 70%,
+    transparent
+  );
+  animation: ${scanLine} 10s linear infinite;
+  animation-delay: 2s;
+`;
+
+/* Угловые акцентные линии */
+export const BgCorner = styled.div<{ $pos: "tl" | "tr" | "bl" | "br" }>`
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  ${({ $pos }) => {
+    switch ($pos) {
+      case "tl": return "top: 80px; left: 24px; border-top: 2px solid rgba(255,102,0,0.4); border-left: 2px solid rgba(255,102,0,0.4); border-radius: 4px 0 0 0;";
+      case "tr": return "top: 80px; right: 24px; border-top: 2px solid rgba(255,102,0,0.4); border-right: 2px solid rgba(255,102,0,0.4); border-radius: 0 4px 0 0;";
+      case "bl": return "bottom: 24px; left: 24px; border-bottom: 2px solid rgba(255,102,0,0.15); border-left: 2px solid rgba(255,102,0,0.15); border-radius: 0 0 0 4px;";
+      case "br": return "bottom: 24px; right: 24px; border-bottom: 2px solid rgba(255,102,0,0.15); border-right: 2px solid rgba(255,102,0,0.15); border-radius: 0 0 4px 0;";
+    }
+  }}
 `;
 
 // ─── Navbar ──────────────────────────────────────────────────────────────────
@@ -109,7 +239,7 @@ export const Nav = styled.nav<{ $scrolled: boolean }>`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -194,16 +324,7 @@ export const HeroSection = styled.section`
   align-items: center;
   padding: 0 48px;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 70% 50%, rgba(255,102,0,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse at 20% 80%, rgba(204,34,41,0.08) 0%, transparent 50%);
-    pointer-events: none;
-  }
+  z-index: 1;
 `;
 
 export const HeroGrid = styled.div`
@@ -371,6 +492,39 @@ const orbitItem = keyframes`
   to   { transform: rotate(calc(var(--start) + 360deg)) translateX(110px) rotate(calc(-1 * (var(--start) + 360deg))); }
 `;
 
+const rotateSlow = keyframes`
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+`;
+
+const rotateSlowReverse = keyframes`
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+`;
+
+const floatA = keyframes`
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+  25%       { transform: translateY(-24px) translateX(10px) rotate(5deg); }
+  75%       { transform: translateY(12px) translateX(-8px) rotate(-3deg); }
+`;
+
+const floatB = keyframes`
+  0%, 100% { transform: translateY(0px) translateX(0px) rotate(45deg); }
+  33%       { transform: translateY(20px) translateX(-14px) rotate(60deg); }
+  66%       { transform: translateY(-10px) translateX(18px) rotate(30deg); }
+`;
+
+const moveOrb = keyframes`
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(60px, -40px) scale(1.1); }
+  66%       { transform: translate(-30px, 30px) scale(0.95); }
+`;
+
+const moveOrb2 = keyframes`
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-80px, 60px) scale(1.15); }
+`;
+
 export const AvatarPlaceholder = styled.div`
   position: relative;
   width: 100%;
@@ -521,6 +675,8 @@ export const HeroScrollHint = styled.div`
 // ─── Section wrapper ─────────────────────────────────────────────────────────
 
 export const Section = styled.section`
+  position: relative;
+  z-index: 1;
   padding: 100px 48px;
   max-width: 1280px;
   margin: 0 auto;
@@ -935,9 +1091,10 @@ export const ProjectLink = styled.div`
 
 export const ContactSection = styled.section`
   position: relative;
+  z-index: 1;
   padding: 100px 48px;
   overflow: hidden;
-  background: #111111;
+  background: transparent;
 
   &::before {
     content: "";

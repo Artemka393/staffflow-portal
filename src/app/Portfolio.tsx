@@ -235,6 +235,38 @@ export function Portfolio({ onEnterPortal }: { onEnterPortal: () => void }) {
     <P.Wrapper>
       <P.PortfolioGlobal />
 
+      {/* ── Фоновые декорации ── */}
+      <P.BgLayer>
+        {/* Градиентные сферы */}
+        <P.BgOrb $top="5%" $left="-5%"  $size="500px" $color="rgba(255,102,0,0.08)"  $delay="0s"   />
+        <P.BgOrb $top="30%" $right="-8%" $size="400px" $color="rgba(255,183,0,0.06)"  $delay="3s" $alt />
+        <P.BgOrb $bottom="10%" $left="20%" $size="600px" $color="rgba(204,34,41,0.05)" $delay="6s"   />
+        <P.BgOrb $bottom="30%" $right="10%" $size="350px" $color="rgba(255,102,0,0.07)" $delay="2s" $alt />
+
+        {/* Вращающиеся кольца */}
+        <P.BgRing $top="-120px" $right="8%"    $size="360px" $opacity="0.12" $duration="28s" />
+        <P.BgRing $top="40%"    $left="-80px"  $size="280px" $opacity="0.1"  $duration="22s" $reverse />
+        <P.BgRing $bottom="-60px" $right="15%" $size="240px" $opacity="0.08" $duration="18s" />
+        <P.BgRing $top="65%"    $right="-60px" $size="200px" $opacity="0.06" $duration="32s" $reverse />
+
+        {/* Плавающие квадраты */}
+        <P.BgSquare $top="15%"  $left="5%"   $size="60px"  $opacity="0.12" $delay="0s"   />
+        <P.BgSquare $top="25%"  $right="12%" $size="40px"  $opacity="0.1"  $delay="1.5s" $alt />
+        <P.BgSquare $top="55%"  $left="8%"   $size="80px"  $opacity="0.08" $delay="3s"   />
+        <P.BgSquare $top="70%"  $right="5%"  $size="50px"  $opacity="0.1"  $delay="0.8s" $alt />
+        <P.BgSquare $bottom="20%" $left="15%" $size="35px" $opacity="0.12" $delay="2s"   />
+        <P.BgSquare $top="45%"  $right="18%" $size="70px"  $opacity="0.07" $delay="4s"   />
+
+        {/* Линия сканирования */}
+        <P.BgScanLine />
+
+        {/* Угловые акценты */}
+        <P.BgCorner $pos="tl" />
+        <P.BgCorner $pos="tr" />
+        <P.BgCorner $pos="bl" />
+        <P.BgCorner $pos="br" />
+      </P.BgLayer>
+
       {/* ── Navbar ── */}
       <P.Nav $scrolled={scrolled}>
         <P.NavLogo onClick={() => scrollTo("hero")}>
